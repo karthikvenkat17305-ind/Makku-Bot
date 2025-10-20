@@ -6,6 +6,7 @@ const form = document.getElementById('composer');
 const RULES = {
     "Makku": ["Ena bekku"],
     "Makkuuu": ["Ena thangoo","Ena di ma","Ena pattuuu"],
+    "Ena panra": ["Summa tha di"],
     "Ena panra makku": ["Summa tha di"],
     "Tata": ["Tata"],
     "Tataa": ["Tataa"],
@@ -436,3 +437,4 @@ avatarPreview.addEventListener('click', (e) => {
     avatarPreview.classList.remove('active');
   }
 });
+
