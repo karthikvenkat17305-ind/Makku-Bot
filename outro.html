@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patience Checking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(214, 214, 214);
+      color: #1500ff;
+      font-family: "Rouge Script",cursive;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .text {
+      font-size: 3rem;
+      max-width: 90%;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .text.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .text.hide {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 10px #1500ff, 0 0 20px #1500ff; }
+      100% { text-shadow: 0 0 20px #3826fc, 0 0 40px #3826fc; }
+    }
+
+    .text {
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    .fade-out {
+      animation: fadeOut 1.5s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; background: white; }
+    }
+
+    @media (max-width: 600px) {
+      .text { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="text" id="displayText"></div>
+
+  <script>
+    const messages = [
+      "🎉 You answered all the questions!",
+      "💡 Do you remember what you asked Makku?",
+      "🔥 He will forget. But not this time, di Laddu!",
+      "🌟 Are you ready to witness the gift from Makku!",
+      "🚀 Here we go!!",
+      "3️⃣ 3",
+      "2️⃣ 2",
+      "1️⃣ 1",
+      "😁 Innum oru time count pannuvoma! Vaa panlam!",
+      "😆 Kovam vanthudum laddu ku porumai illa, ipo last ah count pannipom!",
+      "3️⃣ 33333333",
+      "2️⃣ 22222222",
+      "1️⃣ 11111111",
+      "🆗 Gooooooooo!!!!!"
+    ];
+
+    const display = document.getElementById("displayText");
+    let i = 0;
+
+    function showNextMessage() {
+      if (i >= messages.length) {
+        // All messages shown — redirect
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = "https://karthikvenkat17305-ind.github.io/Makku-Bot/";
+        }, 1500);
+        return;
+      }
+
+      display.textContent = messages[i];
+      display.classList.add("show");
+      
+      // Hide and move to next
+      setTimeout(() => {
+        display.classList.remove("show");
+        display.classList.add("hide");
+        setTimeout(() => {
+          display.classList.remove("hide");
+          i++;
+          showNextMessage();
+        }, 1000); // smooth fade transition
+      }, 3000); // show each message for 4 sec
+    }
+
+    showNextMessage();
+  </script>
+</body>
+</html>
